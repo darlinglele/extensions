@@ -1,0 +1,28 @@
+#extension_content {
+    border-radius: 4px;
+    border: 1px solid #ADEDED;
+    background-color: #EDEDED;
+    /*width: 250px;*/
+    /*height: 150px;*/
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    z-index: 1000;
+    RIGHT: 0;
+}
+
+#download {
+    display: inline-block;
+    zoom: 1;
+    margin-right: 10px;
+    line-height: 19px;
+    vertical-align: top;
+    cursor: pointer;
+    text-align: right;
+    color: #999;
+    float: right;
+    padding: 10px;
+    color: #999;
+    display: inline;
+    margin-right: 0;
+}
