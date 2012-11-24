@@ -1,0 +1,29 @@
+{
+    "name":"QQ Music Downloader",
+    "version":"1.0",
+    "manifest_version":2,
+    "description":"An extension find and download the music exiting in web page",
+    "browser_action":{
+        "default_icon":"icon.jpg"
+    },
+
+    "permissions": ["tabs","webRequest", "webRequestBlocking", "contextMenus",
+         "http://*/*"],
+
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "icons":{
+        "16":"icon.jpg",
+        "48":"icon.jpg",
+        "128":"icon.jpg"
+    },
+    "content_scripts": [
+        {
+            "matches": ["http://y.qq.com/*"],
+            "css":["content.css"],
+            "js": [ "jquery.min.js","jquery-ui.min.js","content.js"],
+            "run_at": "document_start"
+        }
+    ]
+}
