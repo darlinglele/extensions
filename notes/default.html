@@ -1,0 +1,121 @@
+<html>
+<head>
+    <title>Notes Books Default Favorite Page</title>
+    <meta HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"/>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="loadnotes.js"></script>
+    <script type="text/javascript" src="jquery.cookie.js"></script>
+    <style type="text/css">
+        body {
+            width: 400px;
+            text-align: left;
+            background: #ffffff;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            color: dimGray;
+        }
+
+        .item {
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+        }
+
+        .link {
+            cursor: pointer;
+            font-size: 12px;
+            text-decoration: underline;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .textbox {
+            border-radius: 4px;
+            width: 180px;
+            height: 23px;
+            border: solid 1px #BDEDED;
+        }
+
+        #error {
+            color: red;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+        }
+
+        #controls, #tools {
+            margin: 5 0 5 0;
+            padding: 3 0 3 0;
+            border-top: solid 1px #BDEDED;
+            border-bottom: solid 1px #EDEDED;
+        }
+
+        .item, .last-item {
+            padding: 8 0 8 0;
+            border-top: solid 1px #BDEDED;
+        }
+
+        .last-item {
+            border-bottom: solid 1px #EDEDED;
+        }
+
+        #search-control {
+            display: inline;
+        }
+
+        #orderBy-control {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="login">
+        <div>
+            <label>Username:</label></br>
+            <input id="name" class="textbox" type="text" tabindex=1></input>
+        </div>
+        <div>
+            <label>Password:</label></br>
+            <input id="pass" class="textbox" autofocus type="password" tabindex=2></input>
+        </div>
+        <div>
+            <input id="commit" type="submit" value="Sign in" tabindex=3></input>
+
+        </div>
+        <div><label id="loginerror" class="error"/></div>
+        <div id="login-status" class="loading">Loading...</div>
+    </div>
+
+
+    <div id="content">
+        <div id="header">
+            <span id="signout" class="link">Sign out</span>
+            <span>|</span>
+            <span id="refresh" class="link">Refresh</span>
+            <span>|</span>
+            <span id="upload" class="link">Upload files</span>
+        </div>
+        <div id="controls">
+            <div id="search-control">
+                <span id="search">Quick filter by enter:</span>
+                <input id='search-key' class="textbox" type='text'></input>
+            </div>
+        </div>
+        <div>
+            <label id="contenterror" class="error"></label>
+        </div>
+        <div id="content-loading" class="loading">Retrieving...</div>
+        <div id="content-main">
+            <div id="menus"></div>
+            <div id="issues"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
