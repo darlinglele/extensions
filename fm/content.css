@@ -26,3 +26,29 @@
     display: inline;
     margin-right: 0;
 }
+
+
+#repeat {
+    display: inline-block;
+    zoom: 1;
+    margin-right: 10px;
+    line-height: 19px;
+    vertical-align: top;
+    cursor: pointer;
+    text-align: right;
+    color: #999;
+    float: right;
+    padding: 10px;
+    color: #999;
+    display: inline;
+    margin-right: 0;
+}
+
+#draggable {
+    width: 150px;
+    height: 150px;
+    padding: 0.5em;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
