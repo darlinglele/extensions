@@ -1,28 +1,41 @@
 var tab;
-var musics = [];
+var current;
+var isRepeatMode = false;
 
 chrome.extension.onMessage.addListener(
     function (request, sender, sendResponse) {
-        tab = sender.tab;
-        if (request.from!=undefined && request.from == "douban.fm") {
-            sendResponse({"musics":musics});
-            musics=[];
-        }
+      tab = sender.tab;
+      if(request.from==null){
+        sendResponse({});
+        return;
+      }
+      if(request.from == "douban.fm") {
+        sendResponse({"music":current});
+      }
+      if(request.from == "repeat"){
+        isRepeatMode = !isRepeatMode;
+        sendResponse({});
+      }
         else
-            sendResponse({}); //clear the requests
+            sendResponse({});
     });
 
 
 chrome.webRequest.onBeforeRequest.addListener(
     function (info) {
-        if (info.url.lastIndexOf(".mp3")==info.url.length-4){
-            musics.push(info.url+"?douban=");
+        if(isRepeatMode && info.url.indexOf(".mp3")!=-1){
+          return {redirectUrl:current};
+        }
+        else if(info.url.lastIndexOf(".mp3")==info.url.length-4){
+            current = info.url+"?douban=";
         }
         return {cancel:false};
+
     },
     {
         urls:[
-            "http://*.douban.com/*"
+            "http://*.douban.com/*",
+            "http://douban.fm/*"
         ]
     },
     ["blocking"]);

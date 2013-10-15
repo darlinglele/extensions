@@ -1,43 +1,47 @@
-var current;
-
+var current = null;
+var isRepeatMode= false;
 $(document).ready(go);
 
 function go() {
     addDownloadLink();
+    addRepeatModeLink();
     setInterval(requireInforFromBackgroundPage, 1000)
 }
 
-function  addExtensionPanel(){
-    var content = $("<div id='extension_content'><div id='playlist'>Play list</div><div id='control'></div></div>");
-     $("body").append(content);
-     $("#extension_content").draggable();
- }
-
 function requireInforFromBackgroundPage() {
     chrome.extension.sendMessage({from:"douban.fm"}, function (response) {
-        response.musics.forEach(addToPlayList);
-        if(response.musics.length>0){
-             current= response.musics.pop();
-             }
+      current = response.music;
     });
 }
 
-function addToPlayList(info){
-    var name= info.substring(info.lastIndexOf('/')+1,info.length)
-    var item = $("<span class='item'>"+name+"</span>");
-    $("#playlist").append(item);
-}
-
-function play(url){
-        var audio = $("<audio src='" + url + "' controls='controls'></audio>");
-        $("#control").children.remove();
-        $("#control").append(audio);
-}
 
 function addDownloadLink(){
     var download = $("<div id='download'><span>下载</span></div>");
     $('#fm-section2').append(download);
     $("#download span").bind("click", downLoadCurrent);
+}
+
+
+
+
+function addRepeatModeLink(){
+   var repeat = $("<div id='repeat'>循环</div>");
+    $('#fm-section2').append(repeat);
+    $("#repeat").bind("click", setRepeatMode);
+}
+
+
+function setRepeatMode(){
+    isRepeatMode = !isRepeatMode;
+    if(isRepeatMode){
+      $("#repeat").text("随机");
+    }
+    else{
+       $("#repeat").text("循环");
+    }
+    chrome.extension.sendMessage({from:"repeat"},function(response){
+      console.log(isRepeatMode?"Yes":"No");
+    });
 }
 
 function downLoadCurrent()
