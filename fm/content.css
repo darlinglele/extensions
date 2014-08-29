@@ -44,11 +44,12 @@
     margin-right: 0;
 }
 
-#draggable {
+#lyrics {
     width: 150px;
     height: 150px;
     padding: 0.5em;
     position: fixed;
     bottom: 0;
+    border:1px solid #ADEDED;
     right: 0;
 }

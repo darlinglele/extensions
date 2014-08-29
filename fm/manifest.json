@@ -8,6 +8,7 @@
     },
 
     "permissions": ["tabs","webRequest", "webRequestBlocking", "contextMenus",
+                    "http://geci.me/*",
          "http://*/*"],
 
     "background": {
